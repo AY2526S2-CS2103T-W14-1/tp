@@ -331,11 +331,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+**Compatibility and Portability**
+* PetLog should run as expected on Windows 11+, macOS 12+, Ubuntu 22.04 LTS+, as long as it has Java 17 or above installed.
+* PetLog UI should remain usable at 100%–200% OS scaling and common resolutions (1366×768 and above).
 
-*{More to be added}*
+**Performance and Responsiveness**
+* PetLog should start and show the main window within 2.5 s on a baseline machine (8 GB RAM, SSD).
+* Commands should complete and update UI within 500 ms for a dataset size of up to 1000 owners + 5000 pets.
+* Opening an existing data file of up to 1000 owners + 5000 pets should complete within 5.0 s.
+
+**Usability and Learnability**
+* A user with typing speed above 40 words per minute for regular English text (i.e. not code, not system admin commands) should be able to accomplish their tasks faster using commands than using the mouse.
+* Command error messages should be understandable to the user, by displaying the field/prefix at fault or the constraint violated.
+* Success and error messages should be consistent to the user, by following a consistent template across commands.
+* New users should be able to add an owner, add a pet, update a pet’s remarks, find an owner/pet, and delete an owner/pet in <= 10 minutes after reading the quickstart guide.
+
+**Reliability and Data Integrity**
+* When exiting PetLog via the exit command, 100% of data should persist across the app restarts.
+* On file load, invalid/corrupted data should be detected and reported to the user without PetLog crashing.
+* PetLog should have a crash-free session rate of ≥ 99.5% in pre-release Quality Assurance runs.
+
+**Network, Security and Privacy**
+* PetLog should function fully offline and should not transmit data over any network.
+
+**Maintainability**
+* PetLog's codebase should utilise relevant Object-Oriented Programming paradigms whenever applicable.
+* PetLog's codebase should abide by all the standards in the CS2103/T Java coding standard.
+* PetLog's codebase should be of high quality, with >= 95% of the lines of code not violating any of the guidelines in the CS2103/T textbook (under Implementation → Code quality). The violations should be justifiable by the author of the section of code.
+
+**Professionalism**
+* PetLog should not use any vulgar/offensive language.
+
+**Project Process**
+* PetLog's implementation is expected to adhere to a schedule that dynamically shifts and is agreed upon by the majority of members.
 
 ### Glossary
 
