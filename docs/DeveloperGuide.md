@@ -376,8 +376,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Owner** - A pet owner who has entrusted their pet(s) to the boarding/day care service.
+* **Pet** - An animal registered under an owner in PetLog.
+* **Species** - The type of animal (e.g., Cat, Dog, Guinea Pig).
+* **Remarks** - Optional free-text notes attached to a pet or owner record (e.g., special care instructions, dietary needs).
+* **Index** - A 1-based integer used to refer to a specific owner or pet in the displayed list.
+* **CLI** - Command Line Interface; a text-based interface where users interact by typing commands.
+* **GUI** - Graphical User Interface; the visual interface displayed to the user.
+* **Mainstream OS** - Windows, Linux, Unix, MacOS.
+* **Care Session** - A period during which a pet is checked in to the boarding/day care service.
+* **Tag** - A short label attached to an owner record for categorisation (e.g., regular, VIP).
+* **Prefix** - A short keyword followed by `/` used to identify a parameter in a command (e.g., `n/`, `ph/`).
 
 --------------------------------------------------------------------------------------------------------------------
 
