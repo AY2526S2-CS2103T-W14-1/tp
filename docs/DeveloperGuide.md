@@ -302,14 +302,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PetLog` and the **Actor** is the `user`, unless specified otherwise)
 
+ <!-- The sample format to refer to
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  PetLog shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
 
@@ -326,8 +327,149 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+-->
+**Use case: Add Owner**
 
-*{More to be added}*
+**MSS**
+
+1. User adds owner with relevant details
+2. PetLog adds owner into the list 
+3. PetLog informs user that the owner was added
+4. PetLog shows a list of owners with details
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Missing owner details or invalid entries
+  * 1a1. PetLog shows an error message 
+  
+    Use case ends.
+* 1b. Duplicate owner 
+  * 1b1. PetLog shows an error message
+  
+    Use case ends.
+       
+**Use case: Add Pet**
+
+**Preconditions: The owner of the pet exists**
+
+**MSS**
+
+1. User adds pet to an owner
+2. PetLog adds pet to the specified owner
+3. PetLog informs user that the pet was added to the specified user
+4. PetLog shows the new list of owners with pet added 
+
+    Use case ends
+
+**Extensions**
+
+* 1a. Invalid commands, invalid details
+  * 1a1. PetLog shows a relevant error message 
+  
+    Use case ends 
+* 1b. Duplicate pet
+  * 1b1. PetLog shows a relevant error message
+    
+    Use case ends
+  
+**Use case: Update Pet Remarks**
+
+**Preconditions: Pet and Owner exists**
+
+1. User update remarks of an existing pet
+2. PetLog updates the remarks
+3. PetLog informs user remark has been updated 
+4. PetLog updates the GUI to show list with added remark
+
+**Extensions**
+
+* 1a. Missing or invalid indices, unrecognized prefixes, malformed command, repeated prefix
+  * 1a1. PetLog shows relevant error message 
+
+    Use case ends 
+
+**Use case: Delete Owner**
+
+1. User requests to delete the owner
+2. PetLog deletes the owner 
+3. PetLog informs user about the successful deletion 
+4. PetLog displays new list without the deleted owner
+
+**Extensions**
+
+* 1a. Missing, invalid, out-of-range index, malformed command, unrecognized prefixes
+  * 1a1. PetLog shows relevant error message 
+
+    Use case ends
+
+**Use case: Delete Pet**
+
+1. User requests to delete the pet
+2. PetLog deletes the pet
+3. PetLog informs user about the successful deletion
+4. PetLog displays new list without the deleted pet
+
+**Extensions**
+
+* 1a. Missing, invalid, out-of-range index, malformed command, unrecognized prefixes
+    * 1a1. PetLog shows relevant error message
+
+      Use case ends
+
+ **Use case: Find owner** 
+
+1. User attempts owner search by keywords 
+2. PetLog finds matching owners
+3. PetLog displays a list of matching owners
+4. PetLog informs in writing the number of matching owners
+
+**Extensions**
+
+* 1a. No prefixes, unrecognized prefixes, malformed command
+  * 1a1. PetLog displays relevant error 
+    
+    Use case ends
+  
+* 1b. Invalid field contents entered in search
+  * 1b1. PetLog displays that there is 0 matches
+    
+    Use case ends
+
+**Use case: Find pet**
+
+1. User attempts pet search by keywords
+2. PetLog finds matching pets
+3. PetLog displays a list of matching pets
+4. PetLog informs in writing the number of matching pets
+
+**Extensions**
+
+* 1a. No prefixes, unrecognized prefixes, malformed command
+    * 1a1. PetLog displays relevant error
+
+      Use case ends
+
+* 1b. Invalid field contents entered in search
+    * 1b1. PetLog displays that there is 0 matches
+
+      Use case ends
+
+**Use case: List**
+
+1. User requests to list all records of owners and pets
+2. PetLog displays the list of owners and pets
+3. PetLog confirms it is showing all records 
+
+**Extensions**
+
+* 1a. Misspelled command, unnecessary prefix inputs
+  * 1a1. PetLog displays a relevant error message
+
+    Use case ends 
+
+*{More may be added}*
 
 ### Non-Functional Requirements
 
