@@ -19,7 +19,7 @@ This project is for [CS2013T (Software Engineering)](https://nus-cs2103-ay2526-s
 
 ### Zhihan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aurorazurary.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
