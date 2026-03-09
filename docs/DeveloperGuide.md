@@ -340,7 +340,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. PetLog informs user that the owner was added
 4. PetLog shows a list of owners with details
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
@@ -364,18 +364,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. PetLog informs user that the pet was added to the specified user
 4. PetLog shows the new list of owners with pet added 
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
 * 1a. Invalid commands, invalid details
   * 1a1. PetLog shows a relevant error message 
   
-    Use case ends 
+    Use case ends .
 * 1b. Duplicate pet
   * 1b1. PetLog shows a relevant error message
     
-    Use case ends
+    Use case ends.
   
 **Use case: Update Pet Remarks**
 
@@ -393,7 +393,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Missing or invalid indices, unrecognized prefixes, malformed command, repeated prefix
   * 1a1. PetLog shows relevant error message 
 
-    Use case ends 
+    Use case ends.
 
 **Use case: Delete Owner**
 
@@ -409,7 +409,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Missing, invalid, out-of-range index, malformed command, unrecognized prefixes
   * 1a1. PetLog shows relevant error message 
 
-    Use case ends
+    Use case ends.
 
 **Use case: Delete Pet**
 
@@ -425,7 +425,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Missing, invalid, out-of-range index, malformed command, unrecognized prefixes
     * 1a1. PetLog shows relevant error message
 
-      Use case ends
+      Use case ends.
 
  **Use case: Find owner** 
 
@@ -441,12 +441,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. No prefixes, unrecognized prefixes, malformed command
   * 1a1. PetLog displays relevant error 
     
-    Use case ends
+    Use case ends.
   
 * 1b. Invalid field contents entered in search
   * 1b1. PetLog displays that there is 0 matches
     
-    Use case ends
+    Use case ends.
 
 **Use case: Find pet**
 
@@ -462,12 +462,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. No prefixes, unrecognized prefixes, malformed command
     * 1a1. PetLog displays relevant error
 
-      Use case ends
+      Use case ends.
 
 * 1b. Invalid field contents entered in search
     * 1b1. PetLog displays that there is 0 matches
 
-      Use case ends
+      Use case ends.
 
 **Use case: List**
 
@@ -482,7 +482,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Misspelled command, unnecessary prefix inputs
   * 1a1. PetLog displays a relevant error message
 
-    Use case ends 
+    Use case ends.
 
 *{More may be added}*
 
