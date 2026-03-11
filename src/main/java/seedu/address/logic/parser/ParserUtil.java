@@ -13,6 +13,10 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.pet.OwnerIndex;
+import seedu.address.model.pet.PetName;
+import seedu.address.model.pet.PetRemark;
+import seedu.address.model.pet.Species;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +124,66 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String ownerIndex} into a {@code OwnerIndex}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ownerIndex} is invalid.
+     */
+    public static OwnerIndex parseOwnerIndex(String ownerIndex) throws ParseException {
+        requireNonNull(ownerIndex);
+        String trimmedOwnerIndex = ownerIndex.trim();
+        //Index's range is to be checked (1 to n), should be done in execute when we have access to model
+        if (!OwnerIndex.isValidOwnerIndex(trimmedOwnerIndex)) {
+            throw new ParseException(OwnerIndex.MESSAGE_CONSTRAINTS);
+        }
+        return new OwnerIndex(trimmedOwnerIndex);
+    }
+
+    /**
+     * Parses a {@code String petName} into a {@code PetName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code petName} is invalid.
+     */
+    public static PetName parsePetName(String petName) throws ParseException {
+        requireNonNull(petName);
+        String trimmedPetName = petName.trim();
+        if (!PetName.isValidName(trimmedPetName)) {
+            throw new ParseException(PetName.MESSAGE_CONSTRAINTS);
+        }
+        return new PetName(trimmedPetName);
+    }
+
+    /**
+     * Parses a {@code String species} into a {@code Species}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code species} is invalid.
+     */
+    public static Species parseSpecies(String species) throws ParseException {
+        requireNonNull(species);
+        String trimmedSpecies = species.trim();
+        if (!Species.isValidSpecies(trimmedSpecies)) {
+            throw new ParseException(Species.MESSAGE_CONSTRAINTS);
+        }
+        return new Species(trimmedSpecies);
+    }
+
+    /**
+     * Parses a {@code String petRemark} into a {@code PetRemark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code petRemark} is invalid.
+     */
+    public static PetRemark parsePetRemark(String petRemark) throws ParseException {
+        requireNonNull(petRemark);
+        String trimmedPetRemark = petRemark.trim();
+        if (!PetRemark.isValidRemark(trimmedPetRemark)) {
+            throw new ParseException(PetRemark.MESSAGE_CONSTRAINTS);
+        }
+        return new PetRemark(trimmedPetRemark);
     }
 }
