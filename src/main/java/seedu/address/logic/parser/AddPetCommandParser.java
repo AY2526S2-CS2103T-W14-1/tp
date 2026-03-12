@@ -1,18 +1,20 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.AddOwnerCommand;
-import seedu.address.logic.commands.AddPetCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
-import seedu.address.model.pet.*;
-import seedu.address.model.tag.Tag;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import seedu.address.logic.commands.AddPetCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.pet.OwnerIndex;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.PetName;
+import seedu.address.model.pet.PetRemark;
+import seedu.address.model.pet.Species;
 
 /**
  * Parses input arguments and creates a new AddPetCommand object
@@ -26,14 +28,16 @@ public class AddPetCommandParser implements Parser<AddPetCommand> {
      */
     public AddPetCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_OWNER_INDEX, PREFIX_PET_NAME, PREFIX_SPECIES, PREFIX_PET_REMARK);
+                ArgumentTokenizer.tokenize(args, PREFIX_OWNER_INDEX,
+                        PREFIX_PET_NAME, PREFIX_SPECIES, PREFIX_PET_REMARK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_OWNER_INDEX, PREFIX_PET_NAME, PREFIX_SPECIES)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPetCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_OWNER_INDEX, PREFIX_PET_NAME, PREFIX_SPECIES, PREFIX_PET_REMARK);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_OWNER_INDEX, PREFIX_PET_NAME,
+                PREFIX_SPECIES, PREFIX_PET_REMARK);
         OwnerIndex ownerIndex = ParserUtil.parseOwnerIndex(argMultimap.getValue(PREFIX_OWNER_INDEX).get());
         PetName petName = ParserUtil.parsePetName(argMultimap.getValue(PREFIX_PET_NAME).get());
         Species species = ParserUtil.parseSpecies(argMultimap.getValue(PREFIX_SPECIES).get());
