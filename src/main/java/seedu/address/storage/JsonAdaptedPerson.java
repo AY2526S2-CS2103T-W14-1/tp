@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.pet.Pet;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,13 +38,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("pets") List<JsonAdaptedPet> pets) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tags != null) {
             this.tags.addAll(tags);
+        }
+        if (pets != null) {
+            this.pets.addAll(pets);
         }
     }
 
@@ -57,6 +62,9 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        pets.addAll(source.getPets().stream()
+                .map(JsonAdaptedPet::new)
                 .collect(Collectors.toList()));
     }
 
@@ -103,8 +111,14 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final List<Pet> personPets = new ArrayList<>();
+        for (JsonAdaptedPet pet : pets) {
+            personPets.add(pet.toModelType());
+        }
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, Set.of()); //placeholder
+        final Set<Pet> modelPets = new HashSet<>(personPets);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPets);
     }
 
 }
