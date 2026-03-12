@@ -21,6 +21,7 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
+ * Copies the petList for the new person created
  */
 public class EditCommandParser implements Parser<EditCommand> {
 

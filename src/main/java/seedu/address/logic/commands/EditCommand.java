@@ -31,6 +31,8 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
+ * Copies the pet list.
+ * Change pet list with delete or add pet instead.
  */
 public class EditCommand extends Command {
 
@@ -101,7 +103,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<Pet> updatedPets = editPersonDescriptor.getPets().orElse(personToEdit.getPets());
+        Set<Pet> updatedPets = personToEdit.getPets();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPets);
     }
@@ -140,6 +142,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Set<Pet> pets;
 
         public EditPersonDescriptor() {}
 
@@ -153,6 +156,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setPets(toCopy.pets);
         }
 
         /**
@@ -211,6 +215,23 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code pets} to this object's {@code pets}.
+         * A defensive copy of {@code pets} is used internally.
+         */
+        public void setPets(Set<Pet> pets) {
+            this.pets = (pets != null) ? new HashSet<>(pets) : null;
+        }
+
+        /**
+         * Returns an unmodifiable pet set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code pets} is null.
+         */
+        public Optional<Set<Pet>> getPets() {
+            return (pets != null) ? Optional.of(Collections.unmodifiableSet(pets)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -238,6 +259,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("pets", pets)
                     .toString();
         }
     }

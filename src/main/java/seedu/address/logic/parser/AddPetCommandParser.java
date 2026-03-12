@@ -41,9 +41,7 @@ public class AddPetCommandParser implements Parser<AddPetCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_PET_REMARK)) {
             petRemark = ParserUtil.parsePetRemark(argMultimap.getValue(PREFIX_PET_REMARK).get());
         }
-
         Pet newPet = new Pet(petName, species, ownerIndex, petRemark);
-
         return new AddPetCommand(newPet);
     }
 
