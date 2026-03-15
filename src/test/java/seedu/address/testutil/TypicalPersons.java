@@ -17,6 +17,11 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.pet.OwnerIndex;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.PetName;
+import seedu.address.model.pet.PetRemark;
+import seedu.address.model.pet.Species;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -26,21 +31,42 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withPets(new Pet(new PetName("Buddy"), new Species("Dog"), new OwnerIndex("1"),
+                    new PetRemark("Loyal and friendly")))
+            .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withPets(new Pet(new PetName("Mittens"), new Species("Cat"), new OwnerIndex("2"),
+                    new PetRemark("Loves sunbeams")))
+            .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+            .withEmail("heinz@example.com").withAddress("wall street")
+            .withPets(new Pet(new PetName("Goldy"), new Species("Fish"), new OwnerIndex("3"),
+                    new PetRemark("Calm swimmer")))
+            .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
+            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
+            .withPets(new Pet(new PetName("Kiwi"), new Species("Bird"), new OwnerIndex("4"),
+                    new PetRemark("Sings at dawn")))
+            .build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
+            .withEmail("werner@example.com").withAddress("michegan ave")
+            .withPets(new Pet(new PetName("Thumper"), new Species("Rabbit"), new OwnerIndex("5"),
+                    new PetRemark("Loves carrots")))
+            .build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
+            .withEmail("lydia@example.com").withAddress("little tokyo")
+            .withPets(new Pet(new PetName("Spike"), new Species("Hedgehog"), new OwnerIndex("6"),
+                    new PetRemark("Shy but cute")))
+            .build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+            .withEmail("anna@example.com").withAddress("4th street")
+            .withPets(new Pet(new PetName("Pebble"), new Species("Turtle"), new OwnerIndex("7"),
+                    new PetRemark("Very patient")))
+            .build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
