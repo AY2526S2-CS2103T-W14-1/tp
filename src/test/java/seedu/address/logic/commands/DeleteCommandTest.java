@@ -80,9 +80,17 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_validPetIndexUnfilteredList_throwsNotImplementedException() {
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON);
+
+        assertCommandFailure(deleteCommand, model, DeleteCommand.MESSAGE_PET_DELETE_NOT_IMPLEMENTED);
+    }
+
+    @Test
     public void equals() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        DeleteCommand deleteFirstPetCommand = new DeleteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
@@ -99,13 +107,17 @@ public class DeleteCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+
+        // different pet index state -> returns false
+        assertFalse(deleteFirstCommand.equals(deleteFirstPetCommand));
     }
 
     @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
         DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        String expected = DeleteCommand.class.getCanonicalName()
+                + "{targetIndex=" + targetIndex + ", petIndex=Optional.empty}";
         assertEquals(expected, deleteCommand.toString());
     }
 
