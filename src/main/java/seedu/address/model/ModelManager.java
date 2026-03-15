@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final ObservableList<Pet> allPets = FXCollections.observableArrayList();
     private final FilteredList<Pet> filteredPets;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -44,14 +45,17 @@ public class ModelManager implements Model {
         filteredPersons.addListener((ListChangeListener<Person>) c -> rebuildPetList());
     }
 
+    /**
+     * Initializes an empty ModelManager.
+     */
+    public ModelManager() {
+        this(new AddressBook(), new UserPrefs());
+    }
+
     private void rebuildPetList() {
         allPets.setAll(filteredPersons.stream()
                 .flatMap(person -> person.getPets().stream())
                 .collect(Collectors.toList()));
-    }
-
-    public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
