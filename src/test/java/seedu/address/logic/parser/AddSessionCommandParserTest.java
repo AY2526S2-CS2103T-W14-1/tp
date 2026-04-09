@@ -26,9 +26,9 @@ public class AddSessionCommandParserTest {
 
     @Test
     public void parse_allRequiredFieldsPresent_success() {
-        assertParseSuccess(parser, VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_START + VALID_END,
+        assertParseSuccess(parser, VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_START + VALID_END + VALID_SERVICE,
                 new AddSessionCommand(Index.fromOneBased(1), Index.fromOneBased(1),
-                        "2026-03-25 10:00", "2026-03-25 11:00"));
+                        "2026-03-25 10:00", "2026-03-25 11:00", List.of("Shampoo")));
     }
 
     @Test
@@ -50,31 +50,35 @@ public class AddSessionCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSessionCommand.MESSAGE_USAGE);
 
-        assertParseFailure(parser, VALID_PET_INDEX + VALID_START + VALID_END, expectedMessage);
-        assertParseFailure(parser, VALID_OWNER_INDEX + VALID_START + VALID_END, expectedMessage);
-        assertParseFailure(parser, VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_END, expectedMessage);
-        assertParseFailure(parser, VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_START, expectedMessage);
+        assertParseFailure(parser, VALID_PET_INDEX + VALID_START + VALID_END + VALID_SERVICE, expectedMessage);
+        assertParseFailure(parser, VALID_OWNER_INDEX + VALID_START + VALID_END + VALID_SERVICE, expectedMessage);
+        assertParseFailure(parser, VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_END + VALID_SERVICE, expectedMessage);
+        assertParseFailure(parser, VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_START + VALID_SERVICE,
+                expectedMessage);
+        assertParseFailure(parser, VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_START + VALID_END, expectedMessage);
     }
 
     @Test
     public void parse_invalidIndex_failure() {
-        assertParseFailure(parser, " oi/0" + VALID_PET_INDEX + VALID_START + VALID_END,
+        assertParseFailure(parser, " oi/0" + VALID_PET_INDEX + VALID_START + VALID_END + VALID_SERVICE,
                 ParserUtil.MESSAGE_INVALID_INDEX);
-        assertParseFailure(parser, VALID_OWNER_INDEX + " pi/0" + VALID_START + VALID_END,
+        assertParseFailure(parser, VALID_OWNER_INDEX + " pi/0" + VALID_START + VALID_END + VALID_SERVICE,
                 ParserUtil.MESSAGE_INVALID_INDEX);
     }
 
     @Test
     public void parse_invalidDateTime_failure() {
-        assertParseFailure(parser, VALID_OWNER_INDEX + VALID_PET_INDEX + " st/2026/03/25 10:00" + VALID_END,
+        assertParseFailure(parser, VALID_OWNER_INDEX + VALID_PET_INDEX + " st/2026/03/25 10:00" + VALID_END
+                + VALID_SERVICE,
                 MESSAGE_DATETIME_CONSTRAINTS);
-        assertParseFailure(parser, VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_START + " et/2026-02-30 11:00",
+        assertParseFailure(parser, VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_START + " et/2026-02-30 11:00"
+                + VALID_SERVICE,
                 MESSAGE_DATETIME_CONSTRAINTS);
     }
 
     @Test
     public void parse_duplicateRequiredPrefixes_failure() {
-        String validInput = VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_START + VALID_END;
+        String validInput = VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_START + VALID_END + VALID_SERVICE;
 
         assertParseFailure(parser, " oi/2" + validInput,
                 Messages.getErrorMessageForDuplicatePrefixes(CliSyntax.PREFIX_OWNER_INDEX));
@@ -88,7 +92,8 @@ public class AddSessionCommandParserTest {
 
     @Test
     public void parse_nonEmptyPreamble_failure() {
-        assertParseFailure(parser, " random" + VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_START + VALID_END,
+        assertParseFailure(parser, " random" + VALID_OWNER_INDEX + VALID_PET_INDEX + VALID_START + VALID_END
+                + VALID_SERVICE,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSessionCommand.MESSAGE_USAGE));
     }
 }

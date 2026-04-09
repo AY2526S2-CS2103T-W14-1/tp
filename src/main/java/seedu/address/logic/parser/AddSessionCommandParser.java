@@ -31,15 +31,13 @@ public class AddSessionCommandParser implements Parser<AddSessionCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_OWNER_INDEX, PREFIX_PET_INDEX,
                         PREFIX_START_TIME, PREFIX_END_TIME, PREFIX_SERVICE_NAME);
 
-        // Required fields (services are optional)
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_OWNER_INDEX, PREFIX_PET_INDEX,
-                PREFIX_START_TIME, PREFIX_END_TIME)
+                PREFIX_START_TIME, PREFIX_END_TIME, PREFIX_SERVICE_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddSessionCommand.MESSAGE_USAGE));
         }
 
-        // Only enforce duplicates for required fields
         argMultimap.verifyNoDuplicatePrefixesFor(
                 PREFIX_OWNER_INDEX, PREFIX_PET_INDEX, PREFIX_START_TIME, PREFIX_END_TIME);
 

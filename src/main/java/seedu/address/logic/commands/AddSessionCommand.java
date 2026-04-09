@@ -36,7 +36,8 @@ public class AddSessionCommand extends Command {
             + PREFIX_PET_INDEX + "PET_INDEX "
             + PREFIX_START_TIME + "START_TIME (yyyy-MM-dd HH:mm) "
             + PREFIX_END_TIME + "END_TIME (yyyy-MM-dd HH:mm) "
-            + "[" + PREFIX_SERVICE_NAME + "SERVICE_NAME]...\n"
+            + PREFIX_SERVICE_NAME + "SERVICE_NAME ["
+            + PREFIX_SERVICE_NAME + "SERVICE_NAME]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_OWNER_INDEX + "1 "
             + PREFIX_PET_INDEX + "1 "
@@ -47,6 +48,7 @@ public class AddSessionCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Added session for %s's pet %s from %s to %s.";
     public static final String MESSAGE_UNKNOWN_SERVICE = "Unknown service: %1$s.";
+    public static final String MESSAGE_MISSING_SERVICE = "At least one service must be specified.";
     public static final String MESSAGE_OVERLAPPING_SESSION =
             "Session overlaps with an existing session for the selected pet.";
 
@@ -56,13 +58,6 @@ public class AddSessionCommand extends Command {
     private final String startTime;
     private final String endTime;
     private final List<String> serviceNames;
-
-    /**
-     * Creates an AddSessionCommand with no services.
-     */
-    public AddSessionCommand(Index ownerIndex, Index petIndex, String startTime, String endTime) {
-        this(ownerIndex, petIndex, startTime, endTime, List.of());
-    }
 
     /**
      * Creates an AddSessionCommand.
@@ -80,6 +75,9 @@ public class AddSessionCommand extends Command {
         requireNonNull(startTime);
         requireNonNull(endTime);
         requireNonNull(serviceNames);
+        if (serviceNames.isEmpty()) {
+            throw new IllegalArgumentException(MESSAGE_MISSING_SERVICE);
+        }
         this.ownerIndex = ownerIndex;
         this.petIndex = petIndex;
         this.startTime = normalizeWhitespace(startTime);
