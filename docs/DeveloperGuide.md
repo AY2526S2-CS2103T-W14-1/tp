@@ -203,7 +203,7 @@ Sessions are attached to pets (not stored as a top-level list), and each `Sessio
 Key implementation points:
 * `addsession` resolves owner (`oi/`) and pet (`pi/`) from the current filtered owner list.
 * Date/time parsing is strict (`Session#parseDateTime`), and end time must be after start time.
-* Optional repeated `sn/` prefixes are allowed to attach multiple services from the service catalogue.
+* At least one `sn/` prefix is required; repeated `sn/` prefixes are allowed to attach multiple services from the service catalogue.
 * Total session fee is computed from the sum of selected service prices.
 * Overlap prevention is enforced per pet via `Pet#hasOverlappingSession(...)`; sessions that only touch at boundaries are allowed.
 * `delete oi/... pi/... si/...` removes a session by index within that pet’s session list.
@@ -493,13 +493,13 @@ Extensions:
 
     Use case ends.
 
-**Use case: UC09 - Add a session with no services**
+**Use case: UC09 - Add a session**
 
-Precondition: The pet for which the session is to be added already exists.
+Precondition: The pet for which the session is to be added already exists, at least one service already exists in the service catalogue, and the services to be added to the session already exist.
 
 MSS:
 
-1. User requests to add a session to a specified pet, with the provided start and end times.
+1. User requests to add a session to a specified pet, with the provided start and end times and at least one service.
 2. PetLog adds the session to the specified pet.
 3. PetLog computes the total fee for the session.
 4. PetLog informs the user that the session was added and displays the updated list of sessions with the session added.
@@ -519,20 +519,12 @@ Extensions:
 
     Use case ends.
 
-**Use case: UC10 - Add a session with services**
+* 1c. PetLog detects that one or more specified services do not exist.
+  * 1c1. PetLog informs the user that the specified service is unknown.
 
-Precondition: The pet for which the session is to be added already exists, and the services to be added to the session already exist.
+    Use case ends.
 
-MSS:
-
-Same as UC09, but also with the specified services in step 1.
-
-
-Extensions:
-
-Same as UC09.
-
-**Use case: UC11 - Delete a session**
+**Use case: UC10 - Delete a session**
 
 Precondition: The session to be deleted exists.
 
@@ -544,7 +536,7 @@ MSS:
 
     Use case ends.
 
-**Use case: UC12 - Delete a service**
+**Use case: UC11 - Delete a service**
 
 Precondition: The service to be deleted exists.
 
@@ -556,7 +548,7 @@ MSS:
 
     Use case ends.
 
-**Use case: UC13 - Editing an owner's details**
+**Use case: UC12 - Editing an owner's details**
 
 Precondition: The owner whose details are to be edited already exists.
 
@@ -568,7 +560,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC14 - Clear all records**
+**Use case: UC13 - Clear all records**
 
 MSS:
 
@@ -578,7 +570,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC15 - Get help with commands**
+**Use case: UC14 - Get help with commands**
 
 MSS:
 
@@ -588,52 +580,52 @@ MSS:
 
    Use case ends.
 
-**Use case: UC16 - Searching for an owner to add a pet to / delete / edit / etc**
+**Use case: UC15 - Searching for an owner to add a pet to / delete / edit / etc**
 
 Precondition: The owner to be searched for already exists.
 
 MSS:
 
 1. User <u>searches for the specified owner (UC06)</u>.
-2. User <u>adds a pet to the owner (UC02)</u> / <u>deletes the owner (UC04)</u> / <u>edits the owner (UC13)</u> / etc., using the updated owner index displayed in step 1.
+2. User <u>adds a pet to the owner (UC02)</u> / <u>deletes the owner (UC04)</u> / <u>edits the owner (UC12)</u> / etc., using the updated owner index displayed in step 1.
 
     Use case ends.
 
-**Use case: UC17 - Adjust the price of a service**
+**Use case: UC16 - Adjust the price of a service**
 
 Precondition: The service whose price is to be adjusted already exists.
 
 MSS:
 
-1. User <u>deletes the service (UC12)</u>.
+1. User <u>deletes the service (UC11)</u>.
 2. User <u>adds a service (UC08)</u> with the same name and adjusted price.
 
     Use case ends.
 
-**Use case: UC18 - Change the timing / services of a session**
+**Use case: UC17 - Change the timing / services of a session**
 
 Precondition: The session to be changed already exists.
 
 MSS:
 
-1. User <u>deletes the session (UC11)</u>.
-2. User <u>adds a session (UC09 or UC10)</u> with the changed timing / services.
+1. User <u>deletes the session (UC10)</u>.
+2. User <u>adds a session (UC09)</u> with the changed timing / services.
 
     Use case ends.
 
-**Use case: UC19 - Adjust the price of a service and recompute the fee of a session using that service**
+**Use case: UC18 - Adjust the price of a service and recompute the fee of a session using that service**
 
 Preconditions: The session and service already exist, the session uses the service.
 
 MSS:
 
-1. User <u>adjusts the price of the service (UC17)</u>.
-2. User <u>deletes the session (UC11)</u>.
-3. User <u>adds a session (UC10)</u> with the same name, time and services.
+1. User <u>adjusts the price of the service (UC16)</u>.
+2. User <u>deletes the session (UC10)</u>.
+3. User <u>adds a session (UC09)</u> with the same name, time and services.
 
     Use case ends.
 
-**Use case: UC20 - Close PetLog**
+**Use case: UC19 - Close PetLog**
 
 MSS:
 
@@ -792,10 +784,13 @@ It aims to complement the UG by suggesting a simple path for testing and providi
       Expected: duplicate service is rejected.
 
    1. Test case: `addsession oi/1 pi/1 st/2026-06-01 11:00 et/2026-06-01 12:00`<br>
-      Expected: overlapping session is rejected.
+      Expected: command is rejected because at least one service is required.
 
    1. Test case: `addsession oi/1 pi/1 st/2026-06-01 13:00 et/2026-06-01 14:00 sn/No Such Service`<br>
       Expected: unknown service is rejected.
+
+   1. Test case: `addsession oi/1 pi/1 st/2026-06-01 11:00 et/2026-06-01 12:00 sn/Test Grooming`<br>
+      Expected: overlapping session is rejected.
 
 ### Saving data
 

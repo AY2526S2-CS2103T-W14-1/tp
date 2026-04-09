@@ -185,7 +185,7 @@ Format: `addservice sn/SERVICE_NAME sp/SERVICE_PRICE`
 
 * `SERVICE_NAME` must be 1 to 30 characters.
 * `SERVICE_PRICE` is in dollars, and must be a number from `0` to `10000` (inclusive), with up to 2 decimal places.
-* Attempting to add a duplicate service, if its name matches an existing service in the service catalogue, will not succeed.
+* Attempting to add a duplicate service will not succeed. A service is considered a duplicate if its name matches that of an existing service in the service catalogue.
 
 Examples:
 * `addservice sn/Ear Cleaning sp/12.50` adds Ear Cleaning as a service to the list with the price of $12.50.
@@ -194,13 +194,16 @@ Examples:
 
 Adds a session for the specified pet. A session has a pet, a start time, an end time, and a list of services, from which the fee is calculated.
 
-Format: `addsession oi/OWNER_INDEX pi/PET_INDEX st/START_TIME et/END_TIME [sn/SERVICE_NAME]…​`
+Format: `addsession oi/OWNER_INDEX pi/PET_INDEX st/START_TIME et/END_TIME sn/SERVICE_NAME [sn/SERVICE_NAME]…​`
+
+Before using this command, ensure that at least one service has already been added to the service catalogue via [`addservice`](#adding-a-service-addservice).
 
 * `OWNER_INDEX` refers to the index number shown in the displayed owner list. It must be a positive integer.
 * `PET_INDEX` refers to the index number shown in the displayed pet list of the specified owner. It must be a positive integer.
 * `START_TIME` and `END_TIME` must be of the format `yyyy-MM-dd HH:mm`.
 * `END_TIME` must be chronologically after `START_TIME`.
-* `SERVICE_NAME`, if provided, must match an existing service in the service catalogue.
+* At least one `SERVICE_NAME` must be provided.
+* Every `SERVICE_NAME` must match an existing service in the service catalogue.
 * Attempting to add a session whose timing overlaps with an existing session for the specified pet will not succeed.
 
 Examples:
@@ -297,7 +300,7 @@ _Details coming soon ..._
 **A**: Use an empty remark value: [`update oi/OWNER_INDEX pi/PET_INDEX pr/`](#updating-the-remarks-of-a-pet-update).
 
 **Q**: Can I create a session without services?<br>
-**A**: Yes. `sn/` is optional in [`addsession`](#adding-a-session-addsession). If no services are provided, the session fee is `0.00`.
+**A**: No. [`addsession`](#adding-a-session-addsession) requires at least one `sn/SERVICE_NAME`.
 
 **Q**: How is a session’s total fee calculated?<br>
 **A**: It is the sum of all services provided in the [`addsession`](#adding-a-session-addsession) command, using the current service prices in PetLog.
@@ -330,7 +333,7 @@ Action | Format, Examples
 [**Search for Owners**](#searching-for-owners-find) | `find [on/OWNER_NAME] [ph/PHONE_NUMBER] [em/EMAIL] [ad/ADDRESS] [ot/OWNER_TAG]…​ [oi/OWNER_INDEX] [pn/PET_NAME] [ps/SPECIES] [pr/REMARKS]`<br> e.g., `find on/Hans ps/Dog`
 [**List All Owners and Pets**](#listing-all-owners-list) | `list`
 [**Add Service**](#adding-a-service-addservice) | `addservice sn/SERVICE_NAME sp/SERVICE_PRICE` <br> e.g., `addservice sn/Ear Cleaning sp/12.50`
-[**Add Session**](#adding-a-session-addsession) | `addsession oi/OWNER_INDEX pi/PET_INDEX st/START_TIME et/END_TIME [sn/SERVICE_NAME]…​` <br> e.g., `addsession oi/1 pi/2 st/2026-05-15 14:30 et/2026-05-15 15:30 sn/Base service charge sn/Shampoo`
+[**Add Session**](#adding-a-session-addsession) | `addsession oi/OWNER_INDEX pi/PET_INDEX st/START_TIME et/END_TIME sn/SERVICE_NAME [sn/SERVICE_NAME]…​` <br> e.g., `addsession oi/1 pi/2 st/2026-05-15 14:30 et/2026-05-15 15:30 sn/Base service charge sn/Shampoo`
 [**Delete Owner, Pet or Session**](#deleting-an-owner-pet-session-or-service-delete) | `delete oi/OWNER_INDEX [pi/PET_INDEX [si/SESSION_INDEX]]`<br> e.g., `delete oi/4 pi/2`
 [**Delete Service**](#deleting-an-owner-pet-session-or-service-delete) | `delete sn/SERVICE_NAME` <br> e.g., `delete sn/Ear Cleaning`
 [**Clear All Entries**](#clearing-all-owners-pets-services-and-sessions-clear) | `clear`
