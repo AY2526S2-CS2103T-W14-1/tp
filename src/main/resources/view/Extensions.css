@@ -5,7 +5,7 @@
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-background: transparent;
 }
 
 .tag-selector {
@@ -17,4 +17,32 @@
 
 .tooltip-text {
     -fx-text-fill: white;
+}
+
+#cardPane {
+    -fx-background-color: #242d34;
+    -fx-background-radius: 14;
+    -fx-border-color: #354048;
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+}
+
+#tags .label {
+    -fx-background-color: rgba(141, 216, 176, 0.14);
+    -fx-background-radius: 999;
+    -fx-padding: 4 10 4 10;
+    -fx-text-fill: #bce8c9;
+    -fx-font-size: 11px;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+.text-field {
+    -fx-background-color: #1f262c;
+    -fx-background-radius: 10;
+    -fx-border-color: #344149;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 10 12 10 12;
+    -fx-text-fill: #f3fbff;
+    -fx-prompt-text-fill: #8ca1ac;
 }

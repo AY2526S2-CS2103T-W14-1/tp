@@ -67,10 +67,11 @@ public class OwnerCard extends UiPart<Region> {
     }
 
     private Label createPetLabel(Pet pet, int ownerPetIndex) {
-        Label label = new Label(ownerPetIndex + ". " + pet.getName().value + " (" + pet.getSpecies().value + ")"
-                + (pet.getRemark().value.isEmpty() ? "" : " — " + pet.getRemark().value));
+        String petSummary = ownerPetIndex + ". " + pet.getName().value + " • " + pet.getSpecies().value;
+        String petRemarkSuffix = pet.getRemark().value.isEmpty() ? "" : "\n" + pet.getRemark().value;
+        Label label = new Label(petSummary + petRemarkSuffix);
         label.setWrapText(true);
-        label.getStyleClass().add("cell_small_label");
+        label.getStyleClass().add("pet-summary-label");
         return label;
     }
 }

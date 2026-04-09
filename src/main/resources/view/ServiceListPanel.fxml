@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <Label styleClass="cell_big_label" text="Services">
+  <styleClass>
+    <String fx:value="panel-card" />
+  </styleClass>
+  <padding>
+    <Insets top="14" right="16" bottom="14" left="16" />
+  </padding>
+  <Label styleClass="section-title" text="Service Catalogue" />
+  <Label styleClass="section-hint" text="Reference prices for optional session services.">
     <padding>
-      <Insets top="5" right="10" bottom="5" left="10" />
+      <Insets top="0" right="0" bottom="8" left="0" />
     </padding>
   </Label>
   <ListView fx:id="serviceListView" VBox.vgrow="ALWAYS" />

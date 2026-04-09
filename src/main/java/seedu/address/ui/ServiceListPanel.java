@@ -25,8 +25,8 @@ public class ServiceListPanel extends UiPart<Region> {
         super(FXML);
         serviceListView.setItems(serviceList);
         serviceListView.setCellFactory(listView -> new ServiceListViewCell());
-        Label placeholder = new Label("No services added yet.\nUse addservice to add one.");
-        placeholder.getStyleClass().add("cell_small_label");
+        Label placeholder = new Label("No services yet.\nUse addservice to build your catalogue.");
+        placeholder.getStyleClass().add("empty-state-label");
         serviceListView.setPlaceholder(placeholder);
     }
 
@@ -41,7 +41,8 @@ public class ServiceListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setText(String.format("%s — $%.2f", service.getName(), service.getCost()));
+                setText(String.format("%-24s $%.2f", service.getName(), service.getCost()));
+                getStyleClass().add("service-list-cell");
             }
         }
     }

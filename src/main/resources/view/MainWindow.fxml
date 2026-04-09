@@ -5,6 +5,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -35,31 +36,49 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <VBox styleClass="hero-panel" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets top="16" right="18" bottom="14" left="18" />
           </padding>
-        </StackPane>
-
-        <HBox styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <StackPane HBox.hgrow="ALWAYS" fx:id="resultDisplayPlaceholder"
-                     minHeight="150" prefHeight="150" maxHeight="150">
+          <Label text="PetLog" styleClass="hero-title" />
+          <Separator />
+          <Label text="Command Console" styleClass="section-title" />
+          <Label text="Try: addowner, addpet, addsession, find" styleClass="section-hint" />
+          <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder">
             <padding>
-              <Insets top="5" right="10" bottom="5" left="10" />
+              <Insets top="8" />
             </padding>
           </StackPane>
-          <StackPane fx:id="serviceListPanelPlaceholder" minWidth="300" maxWidth="300"
-                     minHeight="150" prefHeight="150" maxHeight="150" />
+        </VBox>
+
+        <HBox spacing="14" VBox.vgrow="NEVER" styleClass="content-strip">
+          <VBox HBox.hgrow="ALWAYS" styleClass="panel-card">
+            <padding>
+              <Insets top="14" right="16" bottom="14" left="16" />
+            </padding>
+            <Label text="Command Feedback" styleClass="section-title" />
+            <Label text="Latest command result and validation feedback." styleClass="section-hint" />
+            <StackPane HBox.hgrow="ALWAYS" fx:id="resultDisplayPlaceholder"
+                       minHeight="120" prefHeight="120" maxHeight="120">
+              <padding>
+                <Insets top="8" />
+              </padding>
+            </StackPane>
+          </VBox>
+          <StackPane fx:id="serviceListPanelPlaceholder" minWidth="320" maxWidth="320"
+                     minHeight="120" prefHeight="120" maxHeight="120" />
         </HBox>
 
-        <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.55">
-          <VBox styleClass="pane-with-border" minWidth="340" SplitPane.resizableWithParent="true">
+        <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.55" styleClass="content-split-pane">
+          <VBox styleClass="panel-card" minWidth="340" SplitPane.resizableWithParent="true" spacing="8">
             <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
+              <Insets top="16" right="16" bottom="16" left="16" />
             </padding>
+            <Label text="Owners" styleClass="section-title" />
+            <Label text="Contact details, tags, and pets grouped by owner." styleClass="section-hint" />
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
-          <StackPane fx:id="sessionListPanelPlaceholder" styleClass="pane-with-border" />
+          <StackPane fx:id="sessionListPanelPlaceholder" styleClass="panel-card" />
         </SplitPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

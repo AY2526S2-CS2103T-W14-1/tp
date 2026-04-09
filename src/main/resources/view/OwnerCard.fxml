@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,14 +13,14 @@
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints percentWidth="55" minWidth="10"/>
+      <ColumnConstraints percentWidth="58" minWidth="10"/>
       <ColumnConstraints percentWidth="45" minWidth="10" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="130" spacing="8" GridPane.columnIndex="0">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
+        <Insets top="12" right="12" bottom="12" left="16" />
       </padding>
-      <HBox spacing="0.5" alignment="CENTER_LEFT">
+      <HBox spacing="6" alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
@@ -30,26 +29,26 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true" HBox.hgrow="ALWAYS"/>
       </HBox>
-      <FlowPane fx:id="tags" />
-      <HBox spacing="6" alignment="CENTER_LEFT">
+      <FlowPane fx:id="tags" hgap="6" vgap="6" />
+      <HBox spacing="8" alignment="CENTER_LEFT" styleClass="owner-detail-row">
         <FontIcon iconLiteral="fas-phone" iconSize="12" iconColor="white" scaleX="-1"/>
         <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" HBox.hgrow="ALWAYS" />
       </HBox>
-      <HBox spacing="6" alignment="CENTER_LEFT">
+      <HBox spacing="8" alignment="CENTER_LEFT" styleClass="owner-detail-row">
         <FontIcon iconLiteral="fas-map-marker-alt" iconSize="12" iconColor="white" />
         <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" HBox.hgrow="ALWAYS" />
       </HBox>
-      <HBox spacing="6" alignment="CENTER_LEFT">
+      <HBox spacing="8" alignment="CENTER_LEFT" styleClass="owner-detail-row">
         <FontIcon iconLiteral="fas-envelope" iconSize="12" iconColor="white" />
         <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" HBox.hgrow="ALWAYS" />
       </HBox>
     </VBox>
-    <ScrollPane styleClass="pet-scroll-pane" fitToWidth="true" fitToHeight="true"
-                hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" GridPane.columnIndex="1">
+    <VBox spacing="8" styleClass="pet-summary-panel" GridPane.columnIndex="1">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="5" />
+        <Insets top="12" right="16" bottom="12" left="8" />
       </padding>
+      <Label text="Pets" styleClass="card-section-title" />
       <VBox fx:id="petsContainer" spacing="4" />
-    </ScrollPane>
+    </VBox>
   </GridPane>
 </HBox>

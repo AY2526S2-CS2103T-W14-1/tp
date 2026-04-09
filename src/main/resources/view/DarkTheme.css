@@ -1,26 +1,30 @@
+:root {
+    color: #241a17;
+}
+
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: linear-gradient(to bottom, #241a17, #342520);
+    background-color: #342520;
 }
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
-    -fx-opacity: 0.9;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #e4d0c4;
+    -fx-opacity: 0.95;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
+    -fx-text-fill: #fff7f1;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: #fff7f1;
     -fx-opacity: 1;
 }
 
@@ -77,20 +81,20 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent transparent #5a443b;
 }
 
 .split-pane {
-    -fx-border-radius: 1;
-    -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-radius: 14;
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .list-cell {
@@ -101,20 +105,20 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #46332c;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #543c33;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #8f5a3c;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-border-color: #f0bb75;
+    -fx-border-width: 1.5;
 }
 
 .list-cell .label {
@@ -124,50 +128,54 @@
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
-    -fx-text-fill: white;
+    -fx-text-fill: #fff8f3;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: white;
+    -fx-text-fill: #f0ddd2;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: transparent;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+     -fx-background-color: #402d27;
+     -fx-border-color: #594139;
+     -fx-border-width: 1px;
+     -fx-background-radius: 12;
+     -fx-border-radius: 12;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #2d211d;
 }
 
 .result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-background-color: #382924;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12pt;
+    -fx-text-fill: #fff8f3;
+    -fx-padding: 10 12 10 12;
+    -fx-background-radius: 10;
 }
 
 .result-display .label {
-    -fx-text-fill: black !important;
+    -fx-text-fill: #fff8f3 !important;
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #e8d5ca;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
+    -fx-background-color: #2d211d;
+    -fx-border-color: #4c3730;
     -fx-border-width: 1px;
 }
 
@@ -194,13 +202,13 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #241a17;
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-size: 13pt;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #fae8dc;
     -fx-opacity: 0.9;
 }
 
@@ -223,6 +231,98 @@
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+.hero-panel {
+    -fx-background-color: linear-gradient(to right, #5b2f24, #7a4332);
+    -fx-border-color: #8a5b48;
+    -fx-border-width: 0 0 1 0;
+}
+
+.hero-title {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 28px;
+    -fx-text-fill: #fff4ec;
+}
+
+.section-title {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 15px;
+    -fx-text-fill: #fff1e7;
+}
+
+.section-hint {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-text-fill: #e2c7b6;
+}
+
+.content-strip {
+    -fx-padding: 14 18 0 18;
+}
+
+.content-split-pane {
+    -fx-padding: 14 18 14 18;
+}
+
+.panel-card {
+    -fx-background-color: #432f29;
+    -fx-border-color: #60463d;
+    -fx-border-width: 1;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+}
+
+.owner-detail-row {
+    -fx-background-color: rgba(255, 240, 230, 0.08);
+    -fx-background-radius: 10;
+    -fx-padding: 6 8 6 8;
+}
+
+.card-section-title {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 12px;
+    -fx-text-fill: #f2c38d;
+}
+
+.pet-summary-panel {
+    -fx-background-color: rgba(255, 245, 236, 0.04);
+}
+
+.pet-summary-label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-text-fill: #fff2e8;
+    -fx-background-color: rgba(240, 187, 117, 0.12);
+    -fx-background-radius: 10;
+    -fx-padding: 8 10 8 10;
+}
+
+.session-meta-label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 12px;
+    -fx-text-fill: #f0ddd1;
+}
+
+.session-fee-label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 12px;
+    -fx-text-fill: #ffd38d;
+}
+
+.session-section-header {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13px;
+    -fx-text-fill: #f1be86;
+}
+
+.empty-state-label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #d9bcae;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-padding: 16 20 16 20;
 }
 
 .button:hover {
