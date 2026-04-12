@@ -59,6 +59,7 @@ public class AddOwnerCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.updateDisplayedSessions(model.getFilteredPersonList());
         String messageTemplate = toAdd.getPhone().hasOnlyDigits()
                 ? MESSAGE_SUCCESS
                 : MESSAGE_SUCCESS_WITH_PHONE_WARNING;
