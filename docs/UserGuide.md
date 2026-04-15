@@ -26,6 +26,8 @@ It works through simple typed commands — no clicking through menus, no complic
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Who Is This Guide For?
 
 PetLog is built for pet daycare and boarding service staff who want a fast, no-fuss way to manage their contacts and pet records.
@@ -50,8 +52,6 @@ Extra context to help you understand.
 `monospace text` — Something you type into PetLog or terminals exactly as shown.
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## Where to Type Commands
 
