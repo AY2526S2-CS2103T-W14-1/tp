@@ -53,6 +53,8 @@ Extra context to help you understand.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Where to Type Commands
 
 All commands in PetLog should be written in the area highlighted by the red box shown in the picture below:
