@@ -15,8 +15,6 @@ It works through simple typed commands — no clicking through menus, no complic
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## What PetLog Can Do For You
 
 -  **Store owner contacts** — name, phone, email, and address, all in one record
@@ -28,8 +26,6 @@ It works through simple typed commands — no clicking through menus, no complic
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## Who Is This Guide For?
 
 PetLog is built for pet daycare and boarding service staff who want a fast, no-fuss way to manage their contacts and pet records.
@@ -38,8 +34,8 @@ We assume:
 - You're comfortable typing on a keyboard
 - You have no coding or technical background — and you don't need one
 - You're using a Windows, Mac, or Linux computer
- 
----
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## How to Read This Guide
 
@@ -131,10 +127,6 @@ PetLog will open in a few seconds with some sample data loaded. Don't worry! You
 
 PetLog loads with some sample data so you can explore right away. Type any of these into the command box and press Enter:
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-`clear` permanently deletes everything. There is no undo. Use with care!
-</div>
-
    * [`list`](#listing-all-owners-list) : Lists all owners, pets, and sessions.
 
    * [`addowner on/John Doe ph/98765432 em/johnd@example.com ad/John street, block 123, #01-01`](#adding-an-owner-addowner) : Adds an owner.
@@ -146,6 +138,10 @@ PetLog loads with some sample data so you can explore right away. Type any of th
    * [`addsession oi/1 pi/1 st/2026-04-06 10:00 et/2026-04-06 11:00 sn/Nail trim`](#adding-a-session-addsession) : Adds a session for a pet.
 
    * [`clear`](#clearing-all-owners-pets-services-and-sessions-clear) : Clears all owners, pets, services, and sessions.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+`clear` permanently deletes everything. There is no undo. Use with care!
+</div>
 
    * [`exit`](#exiting-the-program-exit) : Exits the app.
 
